@@ -13,9 +13,21 @@ class AuthController extends Controller
 
     public function loginSubmit(Request $request) 
     {
-        echo $request->input('text_username'); // serve para retornar o valor ( usado para verificar se esta trazendo o valor correto)
-        echo '<br>';
-        echo $request->input('text_password'); // serve para retornar o valor ( usado para verificar se esta trazendo o valor correto)
+        //form validation
+        $request->validate(
+            [
+                'text_username' => 'required' , //caso houvesse mais alguma validação poderia colocar o | e ir adicionando as outiras  ( required | asjkdlasdj | dhsajdhkjashd)
+                // outra forma seria por array ['required', 'dasdasd', 'dashjdhaks']
+                'text_password' => 'required'
+            ]
+
+            );
+
+            // get user input
+            $username = $request->input('text_username');
+            $password = $request->input('text_password');
+
+            echo "OK!"; // esse OK é para caso passe as validaçoes ele retorne esse OK
     }
 
     public function logout() 
